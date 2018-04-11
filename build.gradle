@@ -1,0 +1,57 @@
+import static java.lang.System.*
+
+group 'com.mtboypbtwoyf'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies{
+        classpath 'net.serenity-bdd:serenity-gradle-plugin:1.9.6'
+    }
+}
+
+apply plugin: 'groovy'
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+apply plugin: 'net.serenity-bdd.aggregator'
+apply plugin: 'maven'
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile (
+            'junit:junit:4.12',
+            'org.codehaus.groovy:groovy:2.4.12'
+    )
+    testCompile (
+            'net.serenity-bdd:serenity-junit:1.9.6',
+            'net.serenity-bdd:serenity-cucumber:1.9.4',
+            'net.serenity-bdd:serenity-screenplay:1.9.6',
+            'io.github.bonigarcia:webdrivermanager:2.1.0',
+            'org.assertj:assertj-core:3.9.0',
+            'io.codearte.jfairy:jfairy:0.5.9',
+            'ch.qos.logback:logback-classic:1.2.3'
+    )
+}
+
+test {
+    testLogging.showStandardStreams = true
+    systemProperties properties.getProperties() as Map<String, ?>
+    maxParallelForks = getProperty("maxParallelForks") ?: "2" as int
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.6'
+}
+
+gradle.startParameter.continueOnFailure = true
+
+println "project.serenity.outputDirectory=${project.serenity.outputDirectory}"
+
