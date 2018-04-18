@@ -1,5 +1,5 @@
 # SerenityBDD Test Automation Gradle POC
-Example test automation framework using [Gradle](https://gradle.org/), [SerenityBDD](http://www.thucydides.info/#/) and [JAVA](https://www.oracle.com/uk/java/index.html)
+Example test automation framework using [Gradle](https://gradle.org/),[SerenityBDD](http://www.thucydides.info/#/) and [JAVA](https://www.oracle.com/uk/java/index.html)
 
 ### Purpose (Why):
 * To automate against web based applications
@@ -15,13 +15,15 @@ Example test automation framework using [Gradle](https://gradle.org/), [Serenity
 1. Create directory for project if running on local instance
 2. ```git clone https://github.com/mtboypbtwoyf/serenitybdd.webapplication.tesco.example.git```
 3. Open command line or terminal and navigate to the directory project is cloned to
-4. Run: ```gradlew clean clearReports test aggregate``` or ```gradle clean clearReports test aggregate``` if you already have a gradle [installation](https://gradle.org/install/) on host platform.
+4. Run: ```./gradlew clean clearReports test aggregate``` 
+or 
+```gradle clean clearReports test aggregate``` if you already have a gradle [installation](https://gradle.org/install/) on host platform.
 5. Test reports are located at ```<project-root-folder>/target/site/serenity/index.html```. Test reports can be viewed with any browser of choice.
 
 ### Notes / Caveats
 * If gradle is already installed and configured on host platform/server, invoke the ```gradle``` command instead of ```gradlew```. 
-* ```gradlew``` indicates you are using a gradle wrapper. The Gradle Wrapper is generally part of a project and it facilitates installation of gradle. If you were using gradle without the wrapper you would have to manually install it - for example, on a mac brew install gradle and then invoke gradle using the ```gradle``` command. In both cases you are using gradle, but the former is more convenient and ensures version consistency across different platforms.
-* Chrome WebDriver binaries are configure to  automatically download using the latest binary at runtime. This will be cached occasionally by the gradle daemon.
+* ```gradlew``` indicates you are using a gradle wrapper. The Gradle Wrapper is generally part of a project and it facilitates installation and setup of gradle. If you were using gradle without the wrapper you would have to manually install it - for example, on a mac brew install gradle and then invoke gradle using the ```gradle``` command. In both cases you are using gradle, but the former is more convenient and ensures version consistency across different platforms.
+* Chrome WebDriver binaries can be configured to automatically download using the latest binary version from chrome at test runtime. This will be cached occasionally by the gradle daemon.
     
 
 ### Executing Tests Using IDEs or Command Line Arguments
@@ -31,18 +33,19 @@ Example test automation framework using [Gradle](https://gradle.org/), [Serenity
 Some examples are provided below:
 
 ```
-gradle clean clearReports test aggregate -Dcucumber.options="--tags <cucumber-tag>"
+./gradlew clean clearReports test aggregate -Dcucumber.options="--tags <cucumber-tag>"
 ```
 
 ```
-gradle clean clearReports test aggregate -Dcucumber.options="--tags @example"
+./gradlew clean clearReports test aggregate -Dcucumber.options="--tags @smoke"
 ```
 
 ```
-gradle clean clearReports test aggregate -Dcucumber.options="--tags @login" -Dwebdriver.remote.driver=chrome -Dwebdriver.remote.os=WINDOWS
+./gradlew clean clearReports test aggregate -Dcucumber.options="--tags @login" -Dwebdriver.remote.driver=chrome -Dwebdriver.remote.os=WINDOWS
 
 ```
 
-
+### Proxy Related Issues
+* Running behind a proxy server? Please refer to the ```gradle.properties``` file for notes and example config options.
 
 &copy; 2018 mtboypbtwoyf

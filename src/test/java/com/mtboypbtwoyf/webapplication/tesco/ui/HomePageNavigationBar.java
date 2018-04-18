@@ -1,30 +1,17 @@
 package com.mtboypbtwoyf.webapplication.tesco.ui;
 
-import com.mtboypbtwoyf.webapplication.tesco.driver.CustomChromeDriver;
-import net.serenitybdd.core.annotations.findby.FindBy;
+import cucumber.api.formatter.AnsiEscapes;
 import net.serenitybdd.core.pages.PageObject;
-import net.serenitybdd.core.pages.WebElementFacade;
-import org.openqa.selenium.WebElement;
-
-import java.util.List;
+import org.openqa.selenium.By;
 
 public class HomePageNavigationBar extends PageObject {
-    @FindBy(id = "tab-Groceries")
-    private List<WebElement> navbarMenuContainer;
 
-    @FindBy(id = "tab-Groceries")
-    private WebElementFacade groceriesLink;
-
-    public void selectGroceriesMenuOption() {
-        groceriesLink.waitUntilVisible().click();
+    public void clickGroceriesNavOption() {
+        find(By.cssSelector("#tab-Groceries > div")).click();
     }
 
-    public void selectFromNavBar() {
-//            navbarMenuContainer
-//                    .stream()
-//                    .filter(element -> element.getText().equalsIgnoreCase(navOption.name()))
-//                    .findAny()
-//                    .ifPresent(WebElement::click);
-//
+    public void clickNavOption(String navOption) {
+        $("#navbar > ul").findBy(By.linkText(navOption)).click();
+        System.out.println("You have selected: " + AnsiEscapes.YELLOW + navOption + AnsiEscapes.RESET);
     }
 }

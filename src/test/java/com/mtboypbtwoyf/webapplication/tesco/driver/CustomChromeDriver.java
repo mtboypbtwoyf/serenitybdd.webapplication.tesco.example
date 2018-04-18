@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.UnreachableBrowserException;
 
 public class CustomChromeDriver implements DriverSource {
@@ -17,17 +18,21 @@ public class CustomChromeDriver implements DriverSource {
         try {
             ChromeDriverManager.getInstance().setup();
             WebDriverManager.chromedriver().version("2.37").setup();
+
             final ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.addArguments("--no-sandbox", "--disable-gpu");
-            chromeOptions.setAcceptInsecureCerts(true);
             if (SystemUtils.IS_OS_LINUX) {
-                chromeOptions.setHeadless(true);
+                chromeOptions.addArguments("--headless", "--ignore-certificate-errors", "--allow-running-insecure-content", "--disable-web-security", "--disable-download-notification", "--no-sandbox", "--disable-gpu");
+                chromeOptions.setAcceptInsecureCerts(true);
+
+                DesiredCapabilities capabilities = new DesiredCapabilities();
+                capabilities.acceptInsecureCerts();
             } else if (SystemUtils.IS_OS_MAC || SystemUtils.IS_OS_WINDOWS) {
-                chromeOptions.addArguments("--start-fullscreen");
+                chromeOptions.addArguments( "--incognito", "--start-fullscreen","--ignore-certificate-errors","--disable-download-notification","--no-sandbox","--disable-gpu");
+                chromeOptions.setAcceptInsecureCerts(true);
             }
-            chromeOptions.addArguments
-                    ("--no-first-run", "--homepage=about:blank", "--incognito", "--disable-download-notification");
+
             return new ChromeDriver(ChromeDriverService.createDefaultService(), chromeOptions);
+
         } catch (Exception e) {
             throw new UnreachableBrowserException(e.getMessage());
         }
