@@ -20,6 +20,7 @@ public class WhenBrowsingTescoGroceriesHomepage {
         user.isOnGroceriesHomepage();
     }
 
+    // TODO: 18/04/2018 TBC
     @Then("^should be able to select all menu options$")
     public void shouldBeAbleToSelectAllMenuOptions() {
         Groceries[] groceries = Groceries.class.getEnumConstants();
