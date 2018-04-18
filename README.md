@@ -47,5 +47,6 @@ Some examples are provided below:
 
 ### Proxy Related Issues
 * Running behind a proxy server? Please refer to the ```gradle.properties``` file for notes and example config options.
+Or pass the command line argument at runtime ```./gradlew -Dhttps.proxyHost=<proxy-server> -Dhttps.proxyPort=<port-number> clean clearReports test aggregate```
 
 &copy; 2018 mtboypbtwoyf
