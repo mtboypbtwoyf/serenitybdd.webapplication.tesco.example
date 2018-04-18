@@ -21,9 +21,12 @@ or
 5. Test reports are located at ```<project-root-folder>/target/site/serenity/index.html```. Test reports can be viewed with any browser of choice.
 
 ### Notes / Caveats
-* If gradle is already installed and configured on host platform/server, invoke the ```gradle``` command instead of ```gradlew```. 
-* ```gradlew``` indicates you are using a gradle wrapper. The Gradle Wrapper is generally part of a project and it facilitates installation and setup of gradle. If you were using gradle without the wrapper you would have to manually install it - for example, on a mac brew install gradle and then invoke gradle using the ```gradle``` command. In both cases you are using gradle, but the former is more convenient and ensures version consistency across different platforms.
-* Chrome WebDriver binaries can be configured to automatically download using the latest binary version from chrome at test runtime. This will be cached occasionally by the gradle daemon.
+* If gradle is already installed and configured on host platform/server, invoke the ```gradle``` command instead of ```./gradlew```. 
+* ```./gradlew``` indicates you are using a gradle wrapper. The Gradle Wrapper is generally part of a project and it facilitates installation and setup of gradle. If you were using gradle without the wrapper you would have to manually install it - for example, on a mac brew install gradle and then invoke gradle using the ```gradle``` command. In both cases you are using gradle, but the former is more convenient and ensures version consistency across different platforms.
+* Chrome WebDriver binaries is configured to download automatically using the latest binary version from google chrome api at runtime. This will be consequently cached by the gradle daemon at first build execution to enable faster build execution setup time against future project builds. Please refer to the ```CustomChromeDriver.java``` class containing the line below for binary setup.
+```
+WebDriverManager.chromedriver().version("2.37").setup();
+```
     
 
 ### Executing Tests Using IDEs or Command Line Arguments
