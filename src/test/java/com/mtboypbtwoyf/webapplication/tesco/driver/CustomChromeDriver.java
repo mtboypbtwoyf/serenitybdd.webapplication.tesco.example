@@ -33,7 +33,7 @@ public class CustomChromeDriver implements DriverSource {
     public WebDriver newDriver() {
         try {
             ChromeDriverManager.getInstance().setup();
-            WebDriverManager.chromedriver().version("64").setup();
+            WebDriverManager.chromedriver().setup();
 
             final ChromeOptions chromeOptions = new ChromeOptions();
             chromeOptions.setAcceptInsecureCerts(true);
