@@ -4,7 +4,7 @@ import cucumber.api.formatter.AnsiEscapes;
 import net.serenitybdd.core.pages.PageObject;
 import org.openqa.selenium.By;
 
-public class HomePageNavigationBar extends PageObject {
+public class HomePageNavBar extends PageObject {
 
     public void clickGroceriesNavOption() {
         find(By.cssSelector("#tab-Groceries > div")).click();
