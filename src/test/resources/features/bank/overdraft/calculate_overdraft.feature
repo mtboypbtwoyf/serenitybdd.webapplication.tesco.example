@@ -1,4 +1,4 @@
-@tescobank
+@tescobank @pending
 Feature: Calculate Overdraft
   In order to apply an overdraft
   As a Lender
