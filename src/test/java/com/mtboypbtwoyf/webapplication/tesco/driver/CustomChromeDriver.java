@@ -30,6 +30,7 @@ public class CustomChromeDriver implements DriverSource {
     }
 
     @Override
+    // TODO: 26/04/2018 WIP Refactor as private methods for less verbosity
     public WebDriver newDriver() {
         try {
             ChromeDriverManager.getInstance().setup();

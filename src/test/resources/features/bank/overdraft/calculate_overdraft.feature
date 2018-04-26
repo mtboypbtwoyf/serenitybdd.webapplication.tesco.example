@@ -19,3 +19,4 @@ Feature: Calculate Overdraft
     Given a new user is interested in 14 days overdraft
     When the user calculates overdraft charges
     Then the overdraft charges should be displayed
+    # WIP To be completed
